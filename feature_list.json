@@ -1,0 +1,5 @@
+{
+  "_comment": "タスク管理リスト。status: READY / IN_PROGRESS / COMPLETE",
+  "_how_to_use": "タスクを追加する際は id・title・status・assignee を記入する",
+  "tasks": []
+}

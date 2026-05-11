@@ -1,0 +1,69 @@
+{
+  "_comment": "AI Business OS — スキル×モデルマッピング v1.0",
+  "_comment2": "タスク開始前にこのファイルを参照し、適切なモデルを人間に提案する",
+  "_comment3": "モデルの切り替えは人間が /model コマンドで手動実行する",
+  "_updated": "2026-05-11",
+
+  "_model_aliases": {
+    "opus":   "claude-opus-4-7",
+    "sonnet": "claude-sonnet-4-6",
+    "haiku":  "claude-haiku-4-5-20251001"
+  },
+
+  "skills": {
+    "strategic-analysis": {
+      "model": "claude-opus-4-7",
+      "error_cost": "critical",
+      "reason": "事業戦略・市場分析・意思決定支援は誤りの影響が大きい。深い推論が必須",
+      "examples": ["競合分析", "事業計画策定", "市場調査レポート", "意思決定支援"]
+    },
+    "research": {
+      "model": "claude-opus-4-7",
+      "error_cost": "high",
+      "reason": "調査の質が後続の文書品質を決める。情報の見落としや誤解釈を防ぐため Opus を使用",
+      "examples": ["業界調査", "競合製品調査", "法規制調査", "先行事例収集"]
+    },
+    "writing": {
+      "model": "claude-sonnet-4-6",
+      "error_cost": "medium",
+      "reason": "文書作成は構成と表現のバランスが重要。Sonnet でコストと品質を両立",
+      "examples": ["提案書", "報告書", "仕様書", "企画書", "プレスリリース"]
+    },
+    "review": {
+      "model": "claude-sonnet-4-6",
+      "error_cost": "high",
+      "reason": "品質チェックの見落としは外部配布後に問題になる。Sonnet で精度を確保",
+      "examples": ["文書レビュー", "論理チェック", "表現確認", "機密情報チェック"]
+    },
+    "summarize": {
+      "model": "claude-haiku-4-5-20251001",
+      "error_cost": "low",
+      "reason": "要約・整理は定型処理。Haiku で十分な品質とコスト削減を両立",
+      "examples": ["議事録要約", "記事まとめ", "メール要約", "会議サマリー"]
+    },
+    "translate": {
+      "model": "claude-haiku-4-5-20251001",
+      "error_cost": "low",
+      "reason": "翻訳は定型処理。ただし重要な契約・公式文書は人間の確認を必須とする",
+      "examples": ["社内文書翻訳", "メール翻訳", "資料翻訳"]
+    },
+    "template-fill": {
+      "model": "claude-haiku-4-5-20251001",
+      "error_cost": "low",
+      "reason": "定型フォーマットへの情報埋め込みは単純作業。Haiku で十分",
+      "examples": ["テンプレート記入", "定型メール作成", "フォーム入力代行"]
+    }
+  },
+
+  "multi_skill_resolution": {
+    "rule": "複数スキルが混在する場合、最も error_cost が高いスキルのモデルを提案する",
+    "priority": ["critical", "high", "medium", "low"]
+  },
+
+  "how_to_use": [
+    "1. タスクの内容を確認し、該当する skill を特定する",
+    "2. そのモデルが現在のセッションのモデルと異なる場合、人間に切り替えを提案する",
+    "3. 例: 「この競合分析は strategic-analysis スキルのため Opus を推奨します。/model で切り替えますか？」",
+    "4. 人間が判断・操作する。Claude は提案するだけ"
+  ]
+}
