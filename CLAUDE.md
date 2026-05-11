@@ -166,4 +166,4 @@ agents/pdm/               PdM向け
 
 - バージョン: v1.0
 - 最終更新: 2026-05-11
-- テンプレート元: https://github.com/PIROSHKI1287/Tessid
+
